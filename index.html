@@ -4,8 +4,399 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TypeMaster Pro - Landing Page</title>
-    <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="index.js" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      .page {
+        display: none;
+        min-height: 100vh;
+        padding: 20px;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        cursor: pointer;
+      }
+
+      .nav-links a:hover {
+        color: #667eea;
+      }
+
+      /* Landing Page */
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        color: white;
+        padding-top: 80px;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: slideInUp 1s ease-out;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        animation: slideInUp 1s ease-out 0.2s both;
+      }
+
+      .btn {
+        background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        animation: slideInUp 1s ease-out 0.4s both;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Form Styles */
+      .form-container {
+        max-width: 400px;
+        margin: 100px auto;
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #555;
+        font-weight: 500;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e1e1e1;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .form-btn {
+        width: 100%;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        padding: 1rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .form-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      /* Typing Test */
+      .typing-container {
+        max-width: 800px;
+        margin: 100px auto;
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .test-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 2rem;
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 10px;
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #667eea;
+      }
+
+      .stat-label {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .text-display {
+        background: #f8f9fa;
+        padding: 2rem;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        min-height: 150px;
+      }
+
+      .text-input {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e1e1e1;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .text-input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .correct {
+        background-color: #d4edda;
+        color: #155724;
+      }
+
+      .incorrect {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+
+      .current {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+
+      /* Results */
+      .results-container {
+        max-width: 600px;
+        margin: 100px auto;
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .result-card {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        border-left: 4px solid #667eea;
+      }
+
+      .result-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .result-date {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .result-wpm {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #667eea;
+      }
+
+      /* About Page */
+      .about-container {
+        max-width: 800px;
+        margin: 100px auto;
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-container h2 {
+        color: #333;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .about-container p {
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        color: #555;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .feature {
+        text-align: center;
+        padding: 2rem;
+        background: #f8f9fa;
+        border-radius: 10px;
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature h3 {
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      .feature p {
+        color: #666;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .form-container,
+        .typing-container,
+        .results-container,
+        .about-container {
+          margin: 80px 20px;
+          padding: 2rem;
+        }
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .success-message {
+        background: #d4edda;
+        color: #155724;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .error-message {
+        background: #f8d7da;
+        color: #721c24;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <!-- Navigation -->
@@ -22,6 +413,7 @@
         </ul>
       </div>
     </nav>
+
     <!-- Landing Page -->
     <div id="landing" class="page active">
       <div class="hero">
@@ -231,5 +623,385 @@
         </div>
       </div>
     </div>
+
+    <script>
+      // Global variables
+      let currentUser = null;
+      let testText = "";
+      let testStartTime = null;
+      let testTimer = null;
+      let testDuration = 60;
+      let currentPosition = 0;
+      let correctChars = 0;
+      let totalChars = 0;
+      let testActive = false;
+
+      // Sample texts for typing test
+      const sampleTexts = [
+        "The quick brown fox jumps over the lazy dog. This pangram contains all letters of the alphabet and is commonly used for typing practice. It helps improve finger dexterity and muscle memory.",
+        "Technology has revolutionized the way we communicate, work, and live. From smartphones to artificial intelligence, we are witnessing unprecedented changes in our daily lives.",
+        "Learning to type efficiently is a valuable skill in today's digital world. With practice and dedication, anyone can improve their typing speed and accuracy significantly.",
+        "The art of programming requires patience, logic, and creativity. Developers must think systematically while crafting elegant solutions to complex problems.",
+        "Climate change is one of the most pressing issues of our time. It requires global cooperation and immediate action to protect our planet for future generations.",
+      ];
+
+      // Page navigation
+      function showPage(pageId) {
+        const pages = document.querySelectorAll(".page");
+        pages.forEach((page) => page.classList.remove("active"));
+        document.getElementById(pageId).classList.add("active");
+
+        if (pageId === "typing-test") {
+          resetTest();
+        } else if (pageId === "results") {
+          loadResults();
+        }
+      }
+
+      // User management
+      function getUsers() {
+        const users = JSON.parse(localStorage.getItem("typingUsers") || "[]");
+        return users;
+      }
+
+      function saveUser(userData) {
+        const users = getUsers();
+        users.push(userData);
+        localStorage.setItem("typingUsers", JSON.stringify(users));
+      }
+
+      function findUser(email) {
+        const users = getUsers();
+        return users.find((user) => user.email === email);
+      }
+
+      function getCurrentUser() {
+        return JSON.parse(localStorage.getItem("currentUser") || "null");
+      }
+
+      function setCurrentUser(user) {
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        currentUser = user;
+      }
+
+      // Form handlers
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const fullName = document.getElementById("regFullName").value;
+          const email = document.getElementById("regEmail").value;
+          const password = document.getElementById("regPassword").value;
+          const confirmPassword =
+            document.getElementById("regConfirmPassword").value;
+
+          // Remove any existing messages
+          const existingMessage = document.querySelector(
+            ".success-message, .error-message"
+          );
+          if (existingMessage) {
+            existingMessage.remove();
+          }
+
+          if (password !== confirmPassword) {
+            showMessage("Passwords do not match!", "error", "registerForm");
+            return;
+          }
+
+          if (findUser(email)) {
+            showMessage("User already exists!", "error", "registerForm");
+            return;
+          }
+
+          const userData = {
+            fullName,
+            email,
+            password,
+            registeredAt: new Date().toISOString(),
+            testResults: [],
+          };
+
+          saveUser(userData);
+          setCurrentUser(userData);
+          showMessage("Registration successful!", "success", "registerForm");
+
+          setTimeout(() => {
+            showPage("typing-test");
+          }, 1500);
+        });
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const email = document.getElementById("loginEmail").value;
+          const password = document.getElementById("loginPassword").value;
+
+          // Remove any existing messages
+          const existingMessage = document.querySelector(
+            ".success-message, .error-message"
+          );
+          if (existingMessage) {
+            existingMessage.remove();
+          }
+
+          const user = findUser(email);
+
+          if (!user || user.password !== password) {
+            showMessage("Invalid email or password!", "error", "loginForm");
+            return;
+          }
+
+          setCurrentUser(user);
+          showMessage("Login successful!", "success", "loginForm");
+
+          setTimeout(() => {
+            showPage("typing-test");
+          }, 1500);
+        });
+
+      document
+        .getElementById("resetForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const email = document.getElementById("resetEmail").value;
+
+          // Remove any existing messages
+          const existingMessage = document.querySelector(
+            ".success-message, .error-message"
+          );
+          if (existingMessage) {
+            existingMessage.remove();
+          }
+
+          const user = findUser(email);
+
+          if (!user) {
+            showMessage("Email not found!", "error", "resetForm");
+            return;
+          }
+
+          showMessage(
+            "Password reset link sent to your email!",
+            "success",
+            "resetForm"
+          );
+
+          setTimeout(() => {
+            showPage("login");
+          }, 2000);
+        });
+
+      function showMessage(message, type, formId) {
+        const messageDiv = document.createElement("div");
+        messageDiv.className =
+          type === "success" ? "success-message" : "error-message";
+        messageDiv.textContent = message;
+
+        const form = document.getElementById(formId);
+        form.insertBefore(messageDiv, form.firstChild);
+      }
+
+      // Typing test functionality
+      function startTest() {
+        if (testActive) return;
+
+        testActive = true;
+        testText = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
+        currentPosition = 0;
+        correctChars = 0;
+        totalChars = 0;
+        testStartTime = Date.now();
+
+        displayText();
+        document.getElementById("textInput").disabled = false;
+        document.getElementById("textInput").focus();
+        document.getElementById("startBtn").style.display = "none";
+        document.getElementById("resetBtn").style.display = "inline-block";
+
+        // Start timer
+        let timeLeft = testDuration;
+        document.getElementById("timer").textContent = timeLeft;
+
+        testTimer = setInterval(() => {
+          timeLeft--;
+          document.getElementById("timer").textContent = timeLeft;
+
+          if (timeLeft <= 0) {
+            endTest();
+          }
+        }, 1000);
+      }
+
+      function displayText() {
+        const textDisplay = document.getElementById("textDisplay");
+        let html = "";
+
+        for (let i = 0; i < testText.length; i++) {
+          if (i < currentPosition) {
+            html += `<span class="correct">${testText[i]}</span>`;
+          } else if (i === currentPosition) {
+            html += `<span class="current">${testText[i]}</span>`;
+          } else {
+            html += testText[i];
+          }
+        }
+
+        textDisplay.innerHTML = html;
+      }
+
+      function endTest() {
+        if (!testActive) return;
+
+        testActive = false;
+        clearInterval(testTimer);
+        document.getElementById("textInput").disabled = true;
+        document.getElementById("startBtn").style.display = "inline-block";
+        document.getElementById("resetBtn").style.display = "none";
+
+        const timeElapsed = (Date.now() - testStartTime) / 1000;
+        const wpm = Math.round(correctChars / 5 / (timeElapsed / 60));
+        const accuracy = Math.round(
+          (correctChars / Math.max(totalChars, 1)) * 100
+        );
+
+        // Save result
+        const result = {
+          date: new Date().toISOString(),
+          wpm: wpm,
+          accuracy: accuracy,
+          timeElapsed: timeElapsed,
+        };
+
+        saveTestResult(result);
+
+        alert(`Test completed!\nWPM: ${wpm}\nAccuracy: ${accuracy}%`);
+      }
+
+      function resetTest() {
+        testActive = false;
+        clearInterval(testTimer);
+
+        document.getElementById("textInput").value = "";
+        document.getElementById("textInput").disabled = true;
+        document.getElementById("textDisplay").innerHTML =
+          'Click "Start Test" to begin...';
+        document.getElementById("wpm").textContent = "0";
+        document.getElementById("accuracy").textContent = "100%";
+        document.getElementById("timer").textContent = "60";
+        document.getElementById("startBtn").style.display = "inline-block";
+        document.getElementById("resetBtn").style.display = "none";
+
+        currentPosition = 0;
+        correctChars = 0;
+        totalChars = 0;
+      }
+
+      function saveTestResult(result) {
+        const user = getCurrentUser();
+        if (!user) return;
+
+        const users = getUsers();
+        const userIndex = users.findIndex((u) => u.email === user.email);
+
+        if (userIndex !== -1) {
+          users[userIndex].testResults = users[userIndex].testResults || [];
+          users[userIndex].testResults.push(result);
+          localStorage.setItem("typingUsers", JSON.stringify(users));
+
+          // Update current user
+          setCurrentUser(users[userIndex]);
+        }
+      }
+
+      function loadResults() {
+        const user = getCurrentUser();
+        const resultsContainer = document.getElementById("resultsContainer");
+
+        if (!user || !user.testResults || user.testResults.length === 0) {
+          resultsContainer.innerHTML =
+            '<p style="text-align: center; color: #666;">No test results found. Take a typing test to see your results here!</p>';
+          return;
+        }
+
+        const sortedResults = user.testResults.sort(
+          (a, b) => new Date(b.date) - new Date(a.date)
+        );
+
+        resultsContainer.innerHTML = sortedResults
+          .map(
+            (result) => `
+                <div class="result-card">
+                    <div class="result-header">
+                        <div class="result-date">${new Date(
+                          result.date
+                        ).toLocaleDateString()}</div>
+                        <div class="result-wpm">${result.wpm} WPM</div>
+                    </div>
+                    <div>
+                        <strong>Accuracy:</strong> ${result.accuracy}% | 
+                        <strong>Time:</strong> ${Math.round(
+                          result.timeElapsed
+                        )}s
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Real-time typing feedback
+      document
+        .getElementById("textInput")
+        .addEventListener("input", function (e) {
+          if (!testActive) return;
+
+          const input = e.target.value;
+          const inputLength = input.length;
+
+          if (inputLength > testText.length) {
+            e.target.value = input.slice(0, testText.length);
+            return;
+          }
+
+          currentPosition = inputLength;
+          totalChars = Math.max(totalChars, inputLength);
+
+          // Calculate correct characters
+          correctChars = 0;
+          for (let i = 0; i < inputLength; i++) {
+            if (input[i] === testText[i]) {
+              correctChars++;
+            }
+          }
+
+          // Update display
+          displayText();
+
+          // Update stats
+          const timeElapsed = (Date.now() - testStartTime) / 1000;
+          const wpm = Math.round(correctChars / 5 / (timeElapsed / 60)) || 0;
+          const accuracy = Math.round(
+            (correctChars / Math.max(totalChars, 1)) * 100
+          );
+
+          document.getElementById("wpm").textContent = wpm;
+          document.getElementById("accuracy").textContent = accuracy + "%";
+
+          // Check if test is complete
+          if (inputLength === testText.length) {
+            endTest();
+          }
+        });
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        currentUser = getCurrentUser();
+        resetTest();
+      });
+    </script>
   </body>
 </html>

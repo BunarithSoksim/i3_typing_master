@@ -55,49 +55,6 @@ TypingMaster/
 
 ### Method 2: Local Web Server (Recommended)
 
-#### Using Python (if installed)
-
-1. **Navigate to project directory**
-   ```bash
-   cd path/to/typingmaster
-   ```
-
-2. **Start Python server**
-   ```bash
-   # Python 3
-   python -m http.server 8000
-   
-   # Python 2
-   python -m SimpleHTTPServer 8000
-   ```
-
-3. **Open in browser**
-   ```
-   http://localhost:8000
-   ```
-
-#### Using Node.js (if installed)
-
-1. **Install http-server globally**
-   ```bash
-   npm install -g http-server
-   ```
-
-2. **Navigate to project directory**
-   ```bash
-   cd path/to/typingmaster
-   ```
-
-3. **Start server**
-   ```bash
-   http-server -p 8000
-   ```
-
-4. **Open in browser**
-   ```
-   http://localhost:8000
-   ```
-
 #### Using Live Server Extension (VS Code)
 
 1. **Install Live Server extension** in VS Code
@@ -245,8 +202,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👥 Development Team
 
 - **Seyha** - Frontend Developer
-- **CS** - Backend Developer  
-- **Cheang Seyha** - UI/UX Designer
+- **PornSophath** - Frontend Developer
+- **Ascendant-7** - Frontend Developer
+- **Seng-chaokun** - Frontend Developer
+- **sakda** - Frontend Developer
 
 ## 📞 Support
 

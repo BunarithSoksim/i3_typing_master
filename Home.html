@@ -369,8 +369,8 @@
           <div class="logo">⌨ TypingMaster</div>
           <ul class="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="typing-test.html">Start</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -389,7 +389,9 @@
         </p>
 
         <div class="cta-buttons">
-          <a href="#" class="btn btn-primary" id="startBtn">Start Typing Now</a>
+          <a href="typing-test.html" class="btn btn-primary" id="startBtn"
+            >Start Typing Now</a
+          >
         </div>
 
         <!-- Typing Demo -->
@@ -553,19 +555,6 @@
           }
         });
       });
-
-      // Start button interaction
-      document
-        .getElementById("startBtn")
-        .addEventListener("click", function (e) {
-          e.preventDefault();
-          this.style.transform = "scale(0.95)";
-          setTimeout(() => {
-            this.style.transform = "scale(1)";
-            // Here you would typically redirect to the typing test page
-            alert("Welcome to TypingMaster! Redirecting to typing test...");
-          }, 150);
-        });
 
       // Intersection Observer for animations
       const observerOptions = {
